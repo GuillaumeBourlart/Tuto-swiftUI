@@ -4,7 +4,7 @@ Site Next.js 14 / React 18 / TypeScript / Tailwind, exporté statiquement. Il li
 
 ## Lire le cours
 
-Le [cours hébergé](https://cours-swiftui-guillaume.amused-chub-8467.chatgpt.site) est accessible indépendamment du dossier local. Voir [publication et restauration](../DEPLOIEMENT.md) pour mettre cette version à jour.
+Le [lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) est sauvegardé sur GitHub. La publication en ligne reste bloquée par une erreur du service Sites ; voir [publication et restauration](../DEPLOIEMENT.md) pour l’état précis et la reprise.
 
 Le script `../Ouvrir le cours.command` sert `out/` avec Python sur **http://127.0.0.1:3000**. Il ouvre la version construite, sans dépendance npm au moment de la lecture. Une seule instance du serveur doit utiliser ce port.
 

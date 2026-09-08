@@ -1,11 +1,27 @@
 # Publication et restauration
 
-- **Cours en ligne** : https://cours-swiftui-guillaume.amused-chub-8467.chatgpt.site
+- **Adresse prévue, pas encore publiée** : https://cours-swiftui-guillaume.amused-chub-8467.chatgpt.site
 - **Sources privées** : https://github.com/GuillaumeBourlart/Tuto-swiftUI
+- **Lecteur prêt à ouvrir** : https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08
 - **Hébergement** : Sites, accès privé au propriétaire. La connexion au compte propriétaire peut être demandée.
 - **Configuration de ce site** : `.openai/hosting.json`, à conserver lors des mises à jour. Elle ne contient aucun secret.
 
-Le serveur `127.0.0.1:3000` dépend du Mac et de son dossier local. Le site hébergé est indépendant : arrêter le serveur ou supprimer le dossier local ne supprime ni ce site ni le dépôt GitHub.
+Le serveur `127.0.0.1:3000` dépend du Mac et de son dossier local. Une fois publié, le site hébergé sera indépendant. Supprimer le dossier local ne supprime pas le dépôt ni le lecteur sauvegardé sur GitHub.
+
+## État de la publication au 8 septembre 2026
+
+Les 172 fichiers initiaux ont été envoyés et comparés à leur copie GitHub. La [construction sur GitHub](https://github.com/GuillaumeBourlart/Tuto-swiftUI/actions/runs/34258519119) a réussi : 9 tests et génération des 130 fiches. Le lecteur de la release provient de cette construction indépendante.
+
+Sites a enregistré la version 1, mais les deux tentatives de publication privée ont échoué avec une erreur interne **HTTP 409 Conflict**, pendant l’enregistrement des callbacks d’authentification. Aucun lien en ligne fonctionnel n’est confirmé. L’accès est resté privé au seul propriétaire.
+
+Informations pour reprendre ou transmettre l’incident au support :
+
+- Site : `appgprj_6aa047dbafac81919872174f7bdc4f09`.
+- Version enregistrée : `appgprj_6aa047dbafac81919872174f7bdc4f09~appgver_3c1b00c6761c819194ddc1fcba1ff1cf`.
+- Dernière publication échouée : `appgdep_6aa048e52594819182c37dbf8da87533`.
+- Erreur renvoyée : `409, message='Conflict'`, service `/service/siwc/sites/clients/oaiapp_A6XFUVblOiztiSyeyXdhBlh0/callbacks`.
+
+Réutiliser ce site et sa version existante pour reprendre la publication lorsque le service est rétabli. Ne pas créer un nouveau site pour contourner cette erreur. Le dépôt GitHub et la release restent utilisables pendant ce blocage.
 
 ## Mettre le cours à jour
 
@@ -33,6 +49,8 @@ Depuis l’ancienne adresse, clique **Exporter ma progression**. Conserve le JSO
 
 ## Restaurer sans environnement de développement
 
-Sur GitHub, ouvre **Actions**, choisis une exécution réussie de **Vérifier et construire le cours**, puis télécharge **cours-swiftui-site**. Cet export est conservé 30 jours ; une nouvelle exécution manuelle du workflow permet de le reconstruire à partir du dépôt.
+Le plus simple : sur GitHub, ouvre **Releases**, puis télécharge **Cours-SwiftUI-lecteur-2026-09-08.zip**. Extrais le ZIP et ouvre `Ouvrir le cours.command` sur Mac avec Python 3 installé. Le dossier `site/out/` doit rester à côté du lanceur. L’archive de cette release n’a pas la limite de conservation de 30 jours des artifacts Actions.
+
+Pour une construction plus récente, ouvre **Actions**, choisis une exécution réussie de **Vérifier et construire le cours**, puis télécharge **cours-swiftui-site**. Cet export est conservé 30 jours ; une nouvelle exécution manuelle du workflow permet de le reconstruire à partir du dépôt.
 
 Extrais le ZIP dans un dossier, puis sers ce dossier avec un serveur HTTP statique, par exemple `python3 -m http.server 3000 --bind 127.0.0.1`. Les liens et scripts du lecteur sont conçus pour HTTP, pas pour ouvrir directement `index.html` avec `file://`.
