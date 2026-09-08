@@ -1,0 +1,15 @@
+.DS_Store
+**/node_modules/
+**/.next/
+**/out/
+**/dist/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+.claude/
+.codex/
+.agents/
+# Browser learning exports are personal data, not site source.
+progression-swiftui-*.json

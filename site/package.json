@@ -1,0 +1,32 @@
+{
+  "name": "swiftui-cours-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "python3 -m http.server 3000 --bind 127.0.0.1 --directory out",
+    "lint": "next lint",
+    "test": "node scripts/test.cjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-markdown": "9.0.1",
+    "react-syntax-highlighter": "15.5.0",
+    "remark-gfm": "4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.15",
+    "@types/node": "20.16.5",
+    "@types/react": "18.3.5",
+    "@types/react-dom": "18.3.0",
+    "@types/react-syntax-highlighter": "15.5.13",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.45",
+    "tailwindcss": "3.4.13",
+    "typescript": "5.6.2"
+  }
+}
