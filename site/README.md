@@ -4,7 +4,7 @@ Site Next.js 14 / React 18 / TypeScript / Tailwind, exporté statiquement. Il li
 
 ## Lire le cours
 
-Le [cours en ligne](https://mobiversegames.com/Tuto-swiftUI-pages/) est publié sur GitHub Pages. Le [lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) est aussi sauvegardé sur le dépôt privé. Voir [publication et restauration](../DEPLOIEMENT.md).
+Le [cours en ligne](https://mobiversegames.com/Tuto-swiftUI-pages/) est publié sur GitHub Pages. Le [lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) est aussi sauvegardé sur le dépôt des sources. Voir [publication et restauration](../DEPLOIEMENT.md).
 
 Le script `../Ouvrir le cours.command` sert `out/` avec Python sur **http://127.0.0.1:3000**. Il ouvre la version construite, sans dépendance npm au moment de la lecture. Une seule instance du serveur doit utiliser ce port.
 

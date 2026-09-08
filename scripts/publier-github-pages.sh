@@ -23,7 +23,7 @@ cat > "$publish_tmp/pages/README.md" <<'README'
 
 [Ouvrir le cours](https://guillaumebourlart.github.io/Tuto-swiftUI-pages/)
 
-Ce dépôt contient uniquement les pages générées. Les sources sont conservées dans le dépôt privé GuillaumeBourlart/Tuto-swiftUI.
+Ce dépôt contient uniquement les pages générées. Les sources sont conservées dans le dépôt des sources GuillaumeBourlart/Tuto-swiftUI.
 La progression et les notes restent dans le navigateur de chaque lecteur, avec export/import personnel.
 README
 
