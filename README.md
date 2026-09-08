@@ -4,11 +4,13 @@
 
 ## Commencer
 
-1. Ouvre **`Ouvrir le cours.command`** dans le dossier déjà construit, ou récupère [le lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08). La publication en ligne est préparée mais bloquée par une erreur du service d’hébergement ; voir [son état](DEPLOIEMENT.md).
+1. Ouvre [le cours en ligne](https://mobiversegames.com/Tuto-swiftUI-pages/), hébergé sur GitHub Pages. Tu peux aussi récupérer [le lecteur prêt à ouvrir localement](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08).
 2. Clique **Commencer mon parcours** : la fiche **00.00** précise ce que tu gardes d’UIKit et l’ordre recommandé.
 3. Pour ta question sur les variables qui ouvrent une page, lis **05.04**, puis pratique **05.06** dans Xcode.
 
-Les sources sont sauvegardées dans [GuillaumeBourlart/Tuto-swiftUI](https://github.com/GuillaumeBourlart/Tuto-swiftUI), un dépôt privé. La suppression du dossier sur ton Mac ne supprime ni le dépôt ni l’archive du lecteur sur GitHub.
+Les sources sont sauvegardées dans [GuillaumeBourlart/Tuto-swiftUI](https://github.com/GuillaumeBourlart/Tuto-swiftUI), un dépôt privé. Les pages générées sont dans [Tuto-swiftUI-pages](https://github.com/GuillaumeBourlart/Tuto-swiftUI-pages), un dépôt public nécessaire à GitHub Pages avec l’offre de ce compte. Le site est public ; les notes et la progression restent dans ton navigateur. Supprimer le dossier sur ton Mac ne supprime ni le site ni les dépôts ni l’archive du lecteur.
+
+L’adresse [guillaumebourlart.github.io/Tuto-swiftUI-pages](https://guillaumebourlart.github.io/Tuto-swiftUI-pages/) redirige vers `mobiversegames.com`, domaine déjà configuré pour GitHub Pages sur ce compte.
 
 Pour lire localement, construis le lecteur comme indiqué ci-dessous, puis double-clique sur **`Ouvrir le cours.command`**. Il sert `site/out` sur [http://127.0.0.1:3000](http://127.0.0.1:3000) avec Python 3. Garde sa fenêtre Terminal ouverte ; `Ctrl+C` arrête le serveur.
 
@@ -42,7 +44,7 @@ Connecte-toi à GitHub avec un compte autorisé pour cloner ce dépôt privé. S
 
 La [version du 8 septembre 2026](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) contient aussi un ZIP du lecteur construit sur GitHub, avec son lanceur Mac. Cette archive reste disponible tant que la version est conservée ; elle permet de lire sans installer npm.
 
-À chaque envoi sur `main`, [GitHub Actions](https://github.com/GuillaumeBourlart/Tuto-swiftUI/actions) teste et construit le lecteur sur une machine indépendante. Le résultat `cours-swiftui-site` est téléchargeable pendant 30 jours depuis une exécution réussie. Les sources restent dans le dépôt. Un envoi GitHub ne republie pas automatiquement le site : voir [les instructions de publication](DEPLOIEMENT.md).
+À chaque envoi sur `main` du dépôt privé, [GitHub Actions](https://github.com/GuillaumeBourlart/Tuto-swiftUI/actions) teste et construit le lecteur sur une machine indépendante. Le résultat `cours-swiftui-site` est téléchargeable pendant 30 jours depuis une exécution réussie. Les sources restent dans le dépôt. Pour actualiser le site public, le script `scripts/publier-github-pages.sh` construit et envoie les pages dans le dépôt public ; GitHub Pages les publie automatiquement. Voir [les instructions de publication](DEPLOIEMENT.md).
 
 ## Pratiquer dans Xcode
 

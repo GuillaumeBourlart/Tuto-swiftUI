@@ -1,56 +1,60 @@
 # Publication et restauration
 
-- **Adresse prévue, pas encore publiée** : https://cours-swiftui-guillaume.amused-chub-8467.chatgpt.site
+- **Cours en ligne** : https://mobiversegames.com/Tuto-swiftUI-pages/
+- **Adresse GitHub Pages** : https://guillaumebourlart.github.io/Tuto-swiftUI-pages/ (redirige vers le domaine ci-dessus).
 - **Sources privées** : https://github.com/GuillaumeBourlart/Tuto-swiftUI
+- **Pages générées publiques** : https://github.com/GuillaumeBourlart/Tuto-swiftUI-pages
 - **Lecteur prêt à ouvrir** : https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08
-- **Hébergement** : Sites, accès privé au propriétaire. La connexion au compte propriétaire peut être demandée.
-- **Configuration de ce site** : `.openai/hosting.json`, à conserver lors des mises à jour. Elle ne contient aucun secret.
 
-Le serveur `127.0.0.1:3000` dépend du Mac et de son dossier local. Une fois publié, le site hébergé sera indépendant. Supprimer le dossier local ne supprime pas le dépôt ni le lecteur sauvegardé sur GitHub.
+Le site est hébergé par GitHub Pages, avec HTTPS. Le domaine `mobiversegames.com` était déjà lié au site utilisateur de ce compte ; [GitHub l’applique aussi aux sites de projet](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages). Aucun réglage DNS ni ancien hébergement Cloudflare n’a été modifié.
 
-## État de la publication au 8 septembre 2026
-
-Les 172 fichiers initiaux ont été envoyés et comparés à leur copie GitHub. La [construction sur GitHub](https://github.com/GuillaumeBourlart/Tuto-swiftUI/actions/runs/34258519119) a réussi : 9 tests et génération des 130 fiches. Le lecteur de la release provient de cette construction indépendante.
-
-Sites a enregistré la version 1, mais les deux tentatives de publication privée ont échoué avec une erreur interne **HTTP 409 Conflict**, pendant l’enregistrement des callbacks d’authentification. Aucun lien en ligne fonctionnel n’est confirmé. L’accès est resté privé au seul propriétaire.
-
-Informations pour reprendre ou transmettre l’incident au support :
-
-- Site : `appgprj_6aa047dbafac81919872174f7bdc4f09`.
-- Version enregistrée : `appgprj_6aa047dbafac81919872174f7bdc4f09~appgver_3c1b00c6761c819194ddc1fcba1ff1cf`.
-- Dernière publication échouée : `appgdep_6aa048e52594819182c37dbf8da87533`.
-- Erreur renvoyée : `409, message='Conflict'`, service `/service/siwc/sites/clients/oaiapp_A6XFUVblOiztiSyeyXdhBlh0/callbacks`.
-
-Réutiliser ce site et sa version existante pour reprendre la publication lorsque le service est rétabli. Ne pas créer un nouveau site pour contourner cette erreur. Le dépôt GitHub et la release restent utilisables pendant ce blocage.
+L’offre de ce compte a refusé Pages sur le dépôt privé. Les sources et sauvegardes restent donc privées ; un dépôt séparé contient uniquement le lecteur public. Le site est consultable par toute personne possédant son adresse. Les notes et la progression ne sont jamais envoyées aux dépôts.
 
 ## Mettre le cours à jour
 
-1. Clone le dépôt complet, ou récupère les dernières modifications. Les fichiers Markdown à la racine font partie des sources indispensables.
-2. Modifie les fiches et, au besoin, le lecteur dans `site/`.
-3. Utilise Node.js 22, puis exécute depuis la racine :
+Il faut Git, Node.js 22, npm, GitHub CLI (`gh`) connecté au compte propriétaire et `rsync`.
+
+1. Clone le dépôt privé complet, ou récupère ses dernières modifications. Les fiches Markdown à la racine sont indispensables à la construction.
+2. Modifie les fiches et, au besoin, le lecteur dans `site/`. Vérifie le contenu :
 
    ```bash
    npm --prefix site ci
    npm --prefix site test
    npm --prefix site run build
-   node scripts/preparer-publication.mjs
+   node site/scripts/verifier-export.cjs
    ```
 
-4. Enregistre et envoie les sources sur GitHub. GitHub Actions effectue les tests et la construction ; son fichier téléchargeable contient le lecteur statique. Ce workflow ne déploie pas automatiquement sur Sites.
-5. Pour actualiser l’adresse hébergée, demande dans Codex de publier ce projet avec Sites en réutilisant le `project_id` existant. Le flux Sites envoie le même état des sources vers son dépôt, prépare une archive du dossier généré `out/`, enregistre la version, puis la publie avec l’accès privé existant. Aucun identifiant d’accès temporaire ne doit être ajouté au dépôt.
+3. Enregistre tes modifications dans Git et envoie-les sur `main` du dépôt privé. GitHub Actions reconstruit le lecteur pour vérifier que les sources sont complètes.
+4. Depuis la racine du dépôt, lance :
 
-`site/out/` est l’export Next.js ; `out/` à la racine est sa copie pour la publication. Ces deux dossiers, les dépendances et les caches sont ignorés par Git. Le script de préparation remplace uniquement la copie générée `out/` à la racine.
+   ```bash
+   bash scripts/publier-github-pages.sh
+   ```
 
-## Progression personnelle
+Le script publie **le dernier commit local**, pas les changements encore non enregistrés. Il reconstruit le cours avec le préfixe `/Tuto-swiftUI-pages` dans un dossier temporaire, vérifie les liens, puis envoie uniquement les pages générées sur `main` du dépôt public. Il conserve le lecteur local `site/out/` et utilise l’authentification GitHub existante sans enregistrer de jeton dans les fichiers du projet.
 
-La progression est conservée dans le navigateur pour chaque adresse. Elle ne dépend pas du dossier du cours, mais elle n’est pas copiée sur une nouvelle adresse automatiquement et n’est pas synchronisée entre appareils.
+GitHub Pages sert la racine de `main` du dépôt public. Le fichier `.nojekyll` conserve les fichiers `_next/`. Attends la réussite de [pages build and deployment](https://github.com/GuillaumeBourlart/Tuto-swiftUI-pages/actions) avant de considérer la mise à jour comme publiée. Le site reste à la même adresse.
 
-Depuis l’ancienne adresse, clique **Exporter ma progression**. Conserve le JSON hors du dossier à supprimer, puis ouvre le cours en ligne et clique **Importer une sauvegarde**. Continue ensuite à utiliser la même adresse. Une mise à jour du site à cette adresse conserve normalement les données du navigateur ; garde néanmoins un export personnel régulier.
+Un simple envoi des sources sur le dépôt privé lance les vérifications, mais ne publie pas à lui seul dans l’autre dépôt. Aucun secret de déploiement entre dépôts n’a été ajouté.
 
-## Restaurer sans environnement de développement
+## Progression personnelle et suppression du dossier
 
-Le plus simple : sur GitHub, ouvre **Releases**, puis télécharge **Cours-SwiftUI-lecteur-2026-09-08.zip**. Extrais le ZIP et ouvre `Ouvrir le cours.command` sur Mac avec Python 3 installé. Le dossier `site/out/` doit rester à côté du lanceur. L’archive de cette release n’a pas la limite de conservation de 30 jours des artifacts Actions.
+Le site fonctionne indépendamment du Mac. Supprimer le dossier local ne supprime ni les dépôts GitHub ni le site. Pour retrouver les fichiers plus tard, clone le dépôt privé ou télécharge ses sources ZIP.
 
-Pour une construction plus récente, ouvre **Actions**, choisis une exécution réussie de **Vérifier et construire le cours**, puis télécharge **cours-swiftui-site**. Cet export est conservé 30 jours ; une nouvelle exécution manuelle du workflow permet de le reconstruire à partir du dépôt.
+La progression reste dans le navigateur pour chaque adresse. Depuis l’ancienne adresse locale, clique **Exporter ma progression**, conserve le JSON hors du dossier à supprimer, puis utilise **Importer une sauvegarde** sur le site en ligne. Continue ensuite à utiliser la même adresse et exporte régulièrement. Les données ne sont pas synchronisées entre appareils.
 
-Extrais le ZIP dans un dossier, puis sers ce dossier avec un serveur HTTP statique, par exemple `python3 -m http.server 3000 --bind 127.0.0.1`. Les liens et scripts du lecteur sont conçus pour HTTP, pas pour ouvrir directement `index.html` avec `file://`.
+Lors de la migration du 8 septembre 2026, l’export local dans Téléchargements était vide : aucune progression existante n’était à transférer.
+
+## Restaurer le lecteur local sans npm
+
+Sur le dépôt privé, ouvre **Releases**, télécharge **Cours-SwiftUI-lecteur-2026-09-08.zip**, extrais le ZIP et ouvre `Ouvrir le cours.command` sur Mac avec Python 3 installé. Le dossier `site/out/` doit rester à côté du lanceur. Cette archive reste disponible tant que la release est conservée.
+
+Pour une construction plus récente, ouvre **Actions**, choisis une exécution réussie de **Vérifier et construire le cours**, puis télécharge **cours-swiftui-site**. Cet export est conservé 30 jours ; une nouvelle exécution manuelle du workflow permet de le reconstruire.
+
+L’export Actions contient directement `index.html` et ses ressources. Extrais-le et sers ce dossier avec `python3 -m http.server 3000 --bind 127.0.0.1`. Le lecteur est conçu pour HTTP, pas pour ouvrir directement `index.html` avec `file://`.
+
+## Ancienne tentative Sites
+
+L’hébergement actif est GitHub Pages. Une tentative de publication privée Sites a échoué avec HTTP 409 pendant l’enregistrement des callbacks d’authentification. Sa configuration est conservée dans `sauvegardes/ancien-hebergement-sites.json`, sans secret ; elle n’est plus utilisée pour publier ce cours.
+
+Références de cet incident, si nécessaire : site `appgprj_6aa047dbafac81919872174f7bdc4f09`, version `appgprj_6aa047dbafac81919872174f7bdc4f09~appgver_3c1b00c6761c819194ddc1fcba1ff1cf`, publication `appgdep_6aa048e52594819182c37dbf8da87533`.

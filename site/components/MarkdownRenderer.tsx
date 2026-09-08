@@ -7,6 +7,7 @@ import { Children, isValidElement, memo } from "react";
 import { allFiches } from "@/lib/sommaire";
 import { useProgress } from "./ProgressProvider";
 import { remarkReadingHeadings } from "@/lib/reading-headings";
+import { withBasePath } from "@/lib/site-url";
 
 function headingText(children: React.ReactNode): string {
   return Children.toArray(children).map(child => {
@@ -42,7 +43,8 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, slug }
             let decoded = file;
             try { decoded = decodeURI(file); } catch { /* Keep malformed URLs as literal links. */ }
             const fiche = allFiches.find(f => f.file === decoded.replace(/^\.\//, ""));
-            return <a href={fiche ? `/fiche/${fiche.slug}/${hash ? `#${hash}` : ""}` : href}>{children}</a>;
+            const target = fiche ? `/fiche/${fiche.slug}/${hash ? `#${hash}` : ""}` : href;
+            return <a href={target ? withBasePath(target) : undefined}>{children}</a>;
           },
           table({ children }) {
             return <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Tableau défilant"><table>{children}</table></div>;

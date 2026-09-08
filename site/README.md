@@ -4,7 +4,7 @@ Site Next.js 14 / React 18 / TypeScript / Tailwind, exporté statiquement. Il li
 
 ## Lire le cours
 
-Le [lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) est sauvegardé sur GitHub. La publication en ligne reste bloquée par une erreur du service Sites ; voir [publication et restauration](../DEPLOIEMENT.md) pour l’état précis et la reprise.
+Le [cours en ligne](https://mobiversegames.com/Tuto-swiftUI-pages/) est publié sur GitHub Pages. Le [lecteur prêt à ouvrir](https://github.com/GuillaumeBourlart/Tuto-swiftUI/releases/tag/v2026.09.08) est aussi sauvegardé sur le dépôt privé. Voir [publication et restauration](../DEPLOIEMENT.md).
 
 Le script `../Ouvrir le cours.command` sert `out/` avec Python sur **http://127.0.0.1:3000**. Il ouvre la version construite, sans dépendance npm au moment de la lecture. Une seule instance du serveur doit utiliser ce port.
 
@@ -41,6 +41,8 @@ Un fichier invalide est refusé ; un stockage inaccessible ou invalide n’est p
 
 `npm test` contrôle l’aller-retour JSON, la fusion, les cas invalides, les liens Markdown locaux, l’unicité du registre et le parcours. `npm run typecheck` contrôle TypeScript. `npm run build` contrôle la génération des pages.
 
+`node scripts/verifier-export.cjs` vérifie ensuite les liens et ressources des 130 fiches dans `out/`. Pour un export dans un sous-chemin, la variable `NEXT_PUBLIC_BASE_PATH` doit être identique pendant la construction et la vérification. Next Link applique ce préfixe automatiquement ; les liens Markdown et le téléchargement Swift utilisent `lib/site-url.ts`.
+
 Depuis le dossier parent :
 
 ```bash
@@ -53,4 +55,6 @@ Vérification des types de six ensembles d’exemples Swift autonomes, cible sim
 
 Ajoute le Markdown dans le dossier parent et son entrée dans `lib/sommaire.ts`. Ajoute son slug au parcours seulement si elle fait partie de la progression conseillée. Les liens Markdown vers les fiches sont convertis vers les pages du lecteur ; les titres de section portent des repères stables dérivés de leur texte. Modifier un titre déjà mémorisé peut invalider son ancien repère.
 
-L’hébergement Sites est configuré à la racine dans `../.openai/hosting.json`. Après le build, `node ../scripts/preparer-publication.mjs` copie l’export vers `../out/` pour la publication. Pour reconstruire depuis un dépôt, il faut inclure **le dossier parent avec les fiches**, pas uniquement `site/`. Importe ta progression sur la nouvelle adresse après un export local.
+Le script `../scripts/publier-github-pages.sh` construit le dernier commit dans un dossier temporaire avec `NEXT_PUBLIC_BASE_PATH=/Tuto-swiftUI-pages`, puis envoie l’export vers le dépôt public de publication. Il ne modifie pas le lecteur local. Sans cette variable, le build produit la version locale à la racine de l’adresse.
+
+Pour reconstruire depuis un dépôt, il faut inclure **le dossier parent avec les fiches**, pas uniquement `site/`. Importe ta progression sur la nouvelle adresse après un export local.

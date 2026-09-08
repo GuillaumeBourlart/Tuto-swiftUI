@@ -19,6 +19,7 @@ function loadTS(relative) {
 const { parseProgress, mergeProgress, emptyProgress, emptyEntry } = loadTS('lib/progress.ts');
 const { allFiches } = loadTS('lib/sommaire.ts');
 const { learningPath } = loadTS('lib/learning-path.ts');
+const { withBasePath } = loadTS('lib/site-url.ts');
 const slugs = allFiches.map(f => f.slug);
 const sample = (overrides = {}) => ({
   version: 1,
@@ -29,6 +30,16 @@ const sample = (overrides = {}) => ({
 
 test('export/import preserves statuses, Unicode notes, reading marker and last page', () => {
   assert.deepEqual(parseProgress(JSON.stringify(sample()), slugs), sample());
+});
+test('GitHub Pages keeps lesson links, downloads and anchors inside the project path', () => {
+  const base = '/Tuto-swiftUI-pages';
+  for (const target of ['/fiche/05-04/#section-optional', '/exemples/NavigationLab/ContentView.swift', '/']) {
+    assert.equal(withBasePath(target, base), base + target);
+    assert.equal(withBasePath(target, ''), target);
+  }
+  for (const target of ['https://developer.apple.com/documentation/swiftui', '//example.com/path', '#section-etat', `${base}/fiche/05-04/`]) {
+    assert.equal(withBasePath(target, base), target);
+  }
 });
 test('bad backup never mutates the existing progress', () => {
   const local = sample();
